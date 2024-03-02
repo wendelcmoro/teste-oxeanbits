@@ -1,0 +1,31 @@
+<h1>Movies</h1>
+<div>
+    <%= link_to "Add new", new_movie_path %>
+</div>
+
+<div>
+    <%= form_tag(csv_import_movies_path, multipart: true) do %>
+        <%= file_field_tag :csv_file %>
+        <%= submit_tag 'Import Movies' %>
+    <% end %>
+</div>
+
+<div>
+    <%= form_tag(csv_import_scores_path, multipart: true) do %>
+        <%= file_field_tag :csv_file %>
+        <%= submit_tag 'Import Movies Scores' %>
+    <% end %>
+</div>
+
+<% @movies.each do |movie| %>
+  <div>
+    <h2><%= movie.title %></h2>
+    <p>Director: <%= movie.director %></p>
+    <p>Average Score: <%= movie.average_score %></p>
+    <%= form_for(current_user.user_movies.find_or_initialize_by(movie_id: movie.id), remote: true) do |f| %>
+      <%= f.hidden_field :movie_id, value: movie.id %>
+      <%= f.number_field :score, in: 1..10 %>
+      <%= f.submit "Rate" %>
+    <% end %>
+  </div>
+<% end %>
