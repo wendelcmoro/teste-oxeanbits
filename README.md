@@ -2,15 +2,26 @@
 
 Teste técnico oxeanbits
 
-# Execução do backend
+# Conteúdos
 
-## Requisitos
+1. [Execução do backend](#1-Execução-do-backend)<br>
+   1.1 [Requisitos](##1.1-Requisitos)<br>
+   1.2 [Configurando ambiente local](## 1.2 Configurando ambiente local)<br>
+   1.3 [Executando projeto](## 1.3 Executando projeto)<br>
+2. [Execução do frontend](#2 Execução do frontend)<br>
+   2.1 [Requisitos](##2.1 Requisitos)<br>
+   2.2 [Configurando ambiente local](##2.2 Configurando ambiente local)<br>
+   2.3 [Executando projeto](##2.3 Executando projeto)<br>
+
+# 1. Execução do backend
+
+## 1.1 Requisitos
 
 - Ruby v3.1.4
 - redis v7.2.4(possivelmente deve funcionar com outras versões)
 - sqlite3
 
-## Configurando ambiente local
+## 1.2 Configurando ambiente local
 
 Para configurar o ambiente local, na pasta backend do repositório, precisamos executar os seguintes comandos:
 
@@ -31,7 +42,7 @@ Com isso, será configurado uma aplicação rails contando com as seguintes func
 - Rota para importar notas de filmes via arquivo CSV
 - Exibir a média das notas de cada filme
 
-## Executando projeto
+## 1.3 Executando projeto
 
 Para executar o ambiente dev, devemos executar o seguinte comando:
 
@@ -57,14 +68,14 @@ bundle exec sidekiq
 
 Com isso podemos agora realizar a importação dos arquivos **CSV** em segundo plano.
 
-# Execução do frontend
+# 2 Execução do frontend
 
-## Requisitos
+## 2.1 Requisitos
 
 - NodeJS v18.17.1
 - npm v9.6.7
 
-## Configurando ambiente local
+## 2.2 Configurando ambiente local
 
 Executar o comando seguinte comando para instalar as dependências do projeto:
 
@@ -72,7 +83,7 @@ Executar o comando seguinte comando para instalar as dependências do projeto:
 npm i
 ```
 
-## Executando projeto
+## 2.3 Executando projeto
 
 Para executar projeto no ambiente local, podemos executar o seguinte comando agora:
 
