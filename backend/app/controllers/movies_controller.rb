@@ -1,10 +1,10 @@
 class MoviesController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token
 
   def index
     @movies = Movie.all
     respond_to do |format|
-      format.html
       format.json { render json: @movies.to_json(methods: :average_score) }
     end
   end
@@ -12,13 +12,16 @@ class MoviesController < ApplicationController
   def new
     @movie = Movie.new
   end
-
+  
   def create
     @movie = Movie.new(movie_params)
-    if @movie.save
-      redirect_to movies_path, notice: "Movie was successfully created."
-    else
-      render :new
+    
+    respond_to do |format|
+        if @movie.save
+            format.json { render json: @movie.to_json(methods: :average_score), status: :created }
+        else
+            format.json { render json: @movie.errors, status: :unprocessable_entity }
+        end
     end
   end
 

@@ -8,12 +8,17 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :movies, only: [:index, :new, :create]
   resources :user_movies, only: [:create, :update]
+  
+#   get '/login', to: 'sessions#new'
+#   delete '/logout', to: 'sessions#destroy'
+  
+  # Rotas autenticação
+  post '/login', to: 'sessions#create'
+  post '/logout', to: 'sessions#destroy'
 
+  # Rotas para importação CSV
   post 'csv/import_movies'
   post 'csv/import_scores'
-
-  get '/login', to: 'sessions#new'
-  delete '/logout', to: 'sessions#destroy'
 
   root 'sessions#new'
 end

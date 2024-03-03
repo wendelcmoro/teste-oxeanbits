@@ -12,10 +12,16 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-  def authenticate_user!
-    unless logged_in?
-      flash[:alert] = "You must be logged in to access this page"
-      redirect_to login_path
-    end
+  def authenticate_user!    
+    token = request.headers['Authorization']&.split(' ')&.last
+    decoded_token = JWT.decode(token, Rails.application.credentials.secret_key_base, true, algorithm: 'HS256').first
+
+    user_id = decoded_token['user_id']
+
+    rescue JWT::ExpiredSignature
+        render json: { error: 'Token expired' }, status: :unauthorized
+    rescue JWT::DecodeError => e
+        Rails.logger.error("Filed to decode tokenn: #{e.message}")
+        render json: { error: 'Invalid token' }, status: :unauthorized
   end
 end
