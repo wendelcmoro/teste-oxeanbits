@@ -104,4 +104,4 @@ Agora basta acessarmos a seguinte rota(se for a padrão) em um navegador de sua 
 
 # 3 Observações
 
-No projeto **backend**, dentro da pasta **storage**, existem dois arquivos CSVs que são foram os modelos utilizados para o desenvolvimento das rotas APIs nos requisitos do projeto: **movies_data_for_test.csv** e **movies_data_score_for_test.csv**, para filmes e avaliações respecitvamente.
+No projeto **backend**, dentro da pasta **storage**, existem dois arquivos CSVs que foram os modelos utilizados para o desenvolvimento das rotas APIs nos requisitos do projeto: **movies_data_for_test.csv** e **movies_data_score_for_test.csv**, para filmes e avaliações respecitvamente.
