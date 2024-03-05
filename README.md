@@ -44,6 +44,14 @@ Com isso, será configurado uma aplicação rails contando com as seguintes func
 - Rota para importar notas de filmes via arquivo CSV
 - Exibir a média das notas de cada filme
 
+Precisamos também gerar uma nova chave do projeto, para isso precisamos executar o seguinte comando:
+
+```console
+bin/rails credentials:edit
+```
+
+Isso abrirá um arquivo para edição, basta fechá-lo. Assim teremos criado um arquivo chamado **master.key** na pasta **/config**, juntamente de um arquivo **credentials.yml**, isso servirá para podermos validar e criar os json web tokens para poder realizar requisições via http.
+
 ## 1.3 Executando projeto
 
 Para executar o ambiente dev, devemos executar o seguinte comando:
