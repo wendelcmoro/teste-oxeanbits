@@ -17,6 +17,8 @@ import styles from "./styles/homepage.module.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const style = {
   position: "absolute",
@@ -174,6 +176,11 @@ const HomePage = () => {
         setEmail("");
         setPassword("");
         setPasswordConfirmation("");
+
+        toast.success("User created successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
       }
     } catch (error) {
       console.error("Error on submiting new user:", error);
@@ -212,6 +219,11 @@ const HomePage = () => {
         setMovieModalOpen(false);
         setTitle("");
         setDirector("");
+
+        toast.success("Movie created successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
       }
     } catch (error) {
       console.error("Error on submiting new movie:", error);
@@ -246,6 +258,11 @@ const HomePage = () => {
 
         setScoreModalOpen(false);
         setScore(0);
+
+        toast.success("Score updated successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
       }
     } catch (error) {
       console.error("Error on updating score:", error);
@@ -271,7 +288,10 @@ const HomePage = () => {
       );
 
       if (response.data) {
-        console.log(response.data);
+        toast.success("File will be processed in background!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
         setImportMovieModalOpen(false);
       }
     } catch (error) {
@@ -298,7 +318,10 @@ const HomePage = () => {
       );
 
       if (response.data) {
-        console.log(response.data);
+        toast.success("File will be processed in background!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
         setImportScoreModalOpen(false);
       }
     } catch (error) {
@@ -308,6 +331,7 @@ const HomePage = () => {
 
   return (
     <div>
+      <ToastContainer />
       <Modal
         open={userModalOpen}
         onClose={userModalClose}
@@ -477,8 +501,8 @@ const HomePage = () => {
 
       <Box sx={{ flexGrow: 1 }}>
         <Grid container="true" spacing={2}>
-          <Grid item xs={11}></Grid>
-          <Grid item xs={1}>
+          <Grid item xs={8} md={10} xl={11}></Grid>
+          <Grid item xs={4} md={2} xl={1}>
             <Button
               variant="contained"
               color="error"
@@ -489,7 +513,7 @@ const HomePage = () => {
             </Button>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={6} md={3}>
             <Button
               variant="contained"
               className={styles.createUserButton}
@@ -501,7 +525,7 @@ const HomePage = () => {
             </Button>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={6} md={3}>
             <Button
               variant="contained"
               className={styles.createMovieButton}
@@ -512,7 +536,7 @@ const HomePage = () => {
               Create Movie
             </Button>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={6} md={3}>
             <Button
               variant="contained"
               className={styles.importMovieButton}
@@ -523,7 +547,7 @@ const HomePage = () => {
               Import Movies
             </Button>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={6} md={3}>
             <Button
               variant="contained"
               className={styles.importScoresButton}
@@ -535,35 +559,58 @@ const HomePage = () => {
             </Button>
           </Grid>
         </Grid>
-        <KendoGrid
-          data={filterBy(movies, filter)}
-          filterable={true}
-          filter={filter}
-          onFilterChange={(e) => setFilter(e.filter)}
-        >
-          <Column field="id" title="ID" width="400px" />
-          <Column field="title" title="Title" width="400px" />
-          <Column field="director" title="Director" width="400px" />
-          <Column field="average_score" title="Average Score" width="400px" />
-          <Column
-            title="Ações"
-            width="400px"
-            cell={(props) => (
-              <Button
-                variant="contained"
-                className={styles.updateScoreButton}
-                onClick={() => {
-                  setScoreModalOpen(true);
-                  setScore(props.dataItem.score);
-                  setMovieId(props.dataItem.id);
-                  setMovieIndex(props.dataIndex);
-                }}
-              >
-                Update Score
-              </Button>
-            )}
-          />
-        </KendoGrid>
+        <Box className={styles.kendoGrid}>
+          <KendoGrid
+            data={filterBy(movies, filter)}
+            filterable={true}
+            filter={filter}
+            onFilterChange={(e) => setFilter(e.filter)}
+          >
+            <Column
+              field="id"
+              title="ID"
+              minResizableWidth={50}
+              resizable={true}
+            />
+            <Column
+              field="title"
+              title="Title"
+              minResizableWidth={50}
+              resizable={true}
+            />
+            <Column
+              field="director"
+              title="Director"
+              minResizableWidth={50}
+              resizable={true}
+            />
+            <Column
+              field="average_score"
+              title="Average Score"
+              minResizableWidth={50}
+              resizable={true}
+            />
+            <Column
+              title="Actions"
+              minResizableWidth={100}
+              resizable={true}
+              cell={(props) => (
+                <Button
+                  variant="contained"
+                  className={styles.updateScoreButton}
+                  onClick={() => {
+                    setScoreModalOpen(true);
+                    setScore(props.dataItem.score);
+                    setMovieId(props.dataItem.id);
+                    setMovieIndex(props.dataIndex);
+                  }}
+                >
+                  Update Score
+                </Button>
+              )}
+            />
+          </KendoGrid>
+        </Box>
       </Box>
     </div>
   );

@@ -23,6 +23,10 @@
     margin: 10px;
 }
 
+.kendoGrid {
+    margin-top: 50px;
+}
+
 .modalStyle {
     position: 'absolute' as 'absolute';
     top: '50%';
