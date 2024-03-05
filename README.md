@@ -12,7 +12,8 @@ Teste técnico oxeanbits
    2.1 [Requisitos](##Requisitos)<br>
    2.2 [Configurando ambiente local](##Configurando-ambiente-local)<br>
    2.3 [Executando projeto](##Executando-projeto)<br>
-2. [Observações](#Observações)<br>
+3. [Variáveis de ambiente](#Variáveis-de-ambiente)<br>
+4. [Testes](#Testes)<br>
 
 # Execução do backend
 
@@ -102,6 +103,10 @@ Agora basta acessarmos a seguinte rota(se for a padrão) em um navegador de sua 
 
 `127.0.0.1:3000`
 
-# 3 Observações
+# 3 Variáveis de ambiente
 
 No projeto **backend**, dentro da pasta **storage**, existem dois arquivos CSVs que foram os modelos utilizados para o desenvolvimento das rotas APIs nos requisitos do projeto: **movies_data_for_test.csv** e **movies_data_score_for_test.csv**, para filmes e avaliações respecitvamente.
+
+# 4 Testes
+
+Não foram adicionados testes automatizados neste projeto.
