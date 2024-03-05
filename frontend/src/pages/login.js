@@ -11,30 +11,40 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const defaultTheme = createTheme();
 
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
-    try {
-      const data = new FormData();
-      data.append("email", email);
-      data.append("password", password);
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email("Invalid email address").required("Required"),
+      password: Yup.string().required("Required"),
+    }),
+    onSubmit: async (values) => {
+      try {
+        const data = new FormData();
+        data.append("email", values.email);
+        data.append("password", values.password);
 
-      const response = await axios.post(process.env.API_URL + "/login", data);
+        const response = await axios.post(process.env.API_URL + "/login", data);
 
-      if (response.data.token) {
-        Cookies.set("currentUser", response.data.token);
-        router.push("/home");
+        if (response.data.token) {
+          Cookies.set("currentUser", response.data.token);
+          router.push("/home");
+        }
+      } catch (error) {
+        console.error("Error on signing in:", error);
       }
-    } catch (error) {
-      console.error("Error on signing in:", error);
-    }
-  };
+    },
+  });
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -54,39 +64,43 @@ export default function LoginPage() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-            onClick={handleLogin}
-          >
-            Sign In
-          </Button>
+
+          <form onSubmit={formik.handleSubmit}>
+            <TextField
+              margin="normal"
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
+            />
+            <TextField
+              margin="normal"
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+          </form>
         </Box>
       </Container>
     </ThemeProvider>
