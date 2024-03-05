@@ -88,7 +88,7 @@ npm i
 Adicionalmente existe um arquivo chamado **.env.example**, copie este arquivo para um novo chamado **.env**, e substituia o valor da chave **API_URL** pelo endereço da url da api na sua máquina local.
 
 ```console
-cp .env.example .env
+cp .env_example .env
 ```
 
 ## 2.3 Executando projeto
