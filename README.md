@@ -83,6 +83,12 @@ Executar o comando seguinte comando para instalar as dependências do projeto:
 npm i
 ```
 
+Adicionalmente existe um arquivo chamado **.env.example**, copie este arquivo para um novo chamado **.env**, e substituia o valor da chave **API_URL** pelo endereço da url da api na sua máquina local.
+
+```console
+cp .env.example .env
+```
+
 ## 2.3 Executando projeto
 
 Para executar projeto no ambiente local, podemos executar o seguinte comando agora:
@@ -94,3 +100,7 @@ npm run dev
 Agora basta acessarmos a seguinte rota(se for a padrão) em um navegador de sua escolha:
 
 `127.0.0.1:3000`
+
+# 3 Observações
+
+No projeto **backend**, dentro da pasta **storage**, existem dois arquivos CSVs que são foram os modelos utilizados para o desenvolvimento das rotas APIs nos requisitos do projeto: **movies_data_for_test.csv** e **movies_data_score_for_test.csv**, para filmes e avaliações respecitvamente.
