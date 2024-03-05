@@ -4,24 +4,25 @@ Teste técnico oxeanbits
 
 # Conteúdos
 
-1. [Execução do backend](#1-Execução-do-backend)<br>
-   1.1 [Requisitos](##1.1-Requisitos)<br>
-   1.2 [Configurando ambiente local](## 1.2 Configurando ambiente local)<br>
-   1.3 [Executando projeto](## 1.3 Executando projeto)<br>
-2. [Execução do frontend](#2 Execução do frontend)<br>
-   2.1 [Requisitos](##2.1 Requisitos)<br>
-   2.2 [Configurando ambiente local](##2.2 Configurando ambiente local)<br>
-   2.3 [Executando projeto](##2.3 Executando projeto)<br>
+1. [Execução do backend](#Execução-do-backend)<br>
+   1.1 [Requisitos](##Requisitos)<br>
+   1.2 [Configurando ambiente local](##Configurando-ambiente-local)<br>
+   1.3 [Executando projeto](##Executando-projeto)<br>
+2. [Execução do frontend](#Execução-do-frontend)<br>
+   2.1 [Requisitos](##Requisitos)<br>
+   2.2 [Configurando ambiente local](##Configurando-ambiente-local)<br>
+   2.3 [Executando projeto](##Executando-projeto)<br>
+2. [Observações](#Observações)<br>
 
-# 1. Execução do backend
+# Execução do backend
 
-## 1.1 Requisitos
+## Requisitos
 
 - Ruby v3.1.4
 - redis v7.2.4(possivelmente deve funcionar com outras versões)
 - sqlite3
 
-## 1.2 Configurando ambiente local
+## Configurando ambiente local
 
 Para configurar o ambiente local, na pasta backend do repositório, precisamos executar os seguintes comandos:
 
