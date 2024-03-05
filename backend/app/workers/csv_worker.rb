@@ -11,7 +11,6 @@ class CsvWorker
                 @movie_params = { title: row['title'], director: row['director'] }
 
                 Rails.logger.info @movie_params
-                Rails.logger.info "teste13"
 
                 @movie = Movie.new(@movie_params)
                 @movie.save
@@ -21,6 +20,11 @@ class CsvWorker
                 @movie_id = row['movie_id']
                 @score = row['score']
                 @user_id = row['user_id']
+
+                if Float(@score) > 10 || Float(@score) < 0
+                    Rails.logger.info @score + ' is not a valid score'
+                    next
+                end
 
                 @movie = Movie.find(@movie_id)
                 @user = User.find(@user_id)
