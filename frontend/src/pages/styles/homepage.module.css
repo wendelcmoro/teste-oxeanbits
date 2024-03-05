@@ -1,0 +1,36 @@
+.logoutButton {
+    margin-top: 20px;
+}
+
+.createUserButton {
+    background-color: green;
+}
+
+.createMovieButton {
+    background-color: pink;
+}
+
+.importMovieButton {
+    background-color: mediumspringgreen;
+}
+
+.importScoresButton {
+    background-color: slateblue;
+}
+
+.updateScoreButton {
+    background-color: purple;
+    margin: 10px;
+}
+
+.modalStyle {
+    position: 'absolute' as 'absolute';
+    top: '50%';
+    left: '50%';
+    transform: 'translate(-50%; -50%)';
+    width: 400;
+    background-color: 'background.paper';
+    border: '2px solid #000';
+    box-shadow: 24;
+    padding: 4;
+}

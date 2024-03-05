@@ -18,6 +18,14 @@ module DesafioRails
 
     config.autoload_paths << Rails.root.join('app/middleware')
     config.eager_load_paths << Rails.root.join('app/middleware')
+    
+    config.middleware.insert_before 0, Rack::Cors do
+        allow do
+          origins 'localhost:3000'  # Substitua pelo seu domínio local
+          resource '*', headers: :any, methods: [:get, :post, :options]
+        end
+      end
+
     # config.eager_load_paths << Rails.root.join('app/middleware')
 
     # Configuration for the application, engines, and railties goes here.

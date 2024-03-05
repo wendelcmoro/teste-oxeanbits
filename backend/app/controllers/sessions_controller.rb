@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         if token
             TokenBlacklist.create(token: token)
             Rails.logger.info("Token added to blacklist: #{token}")
-            render json: { msg: 'Logout done' }, status: :not_found
+            render json: { msg: 'Logout done' }
         else
             render json: { error: 'Token not found' }, status: :not_found
         end
